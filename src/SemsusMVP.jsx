@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useCarteira, GanhePontos, MinhaCarteira, precoEmPontos } from "./Gamificacao";
 
 // ---------------------------------------------------------------------------
 // SEMSUS — Protótipo de MVP (front-end)
@@ -69,13 +70,17 @@ const SEED_ARTESAOS = [
 
 const SEED_PRODUTOS = [
   { id: "P001", artesaoId: "A001", loteId: "L001", nome: "Bolsa patchwork retalhos", kgUsado: 4, preco: 89 },
+  { id: "P002", artesaoId: "A001", loteId: "L001", nome: "Chaveiro de retalho", kgUsado: 0.2, preco: 15 },
+  { id: "P003", artesaoId: "A002", loteId: "L002", nome: "Porta-copos de madeira (4 un.)", kgUsado: 0.8, preco: 35 },
 ];
 
 const tabs = [
   { key: "materiais", label: "Banco de materiais" },
   { key: "artesaos", label: "Artesãos" },
   { key: "marketplace", label: "Marketplace" },
-  { key: "impacto", label: "Meu impacto" },
+  { key: "ganhe", label: "Ganhe pontos" },
+  { key: "carteira", label: "Minha carteira" },
+  { key: "impacto", label: "Impacto" },
 ];
 
 export default function SemsusMVP() {
@@ -83,6 +88,26 @@ export default function SemsusMVP() {
   const [artesaos, setArtesaos] = useState(SEED_ARTESAOS);
   const [produtos, setProdutos] = useState(SEED_PRODUTOS);
   const [tab, setTab] = useState("materiais");
+  const carteira = useCarteira();
+  const [aviso, setAviso] = useState("");
+
+  // links da página (ex.: "Começar a ganhar pontos") podem abrir uma aba
+  useEffect(() => {
+    function abrir(e) {
+      if (tabs.some((t) => t.key === e.detail)) setTab(e.detail);
+    }
+    window.addEventListener("semsus:tab", abrir);
+    return () => window.removeEventListener("semsus:tab", abrir);
+  }, []);
+
+  function trocar(produto) {
+    const ok = carteira.resgatar(produto);
+    setAviso(
+      ok
+        ? `Troca feita: ${produto.nome}. Veja em Minha carteira.`
+        : `Faltam ${precoEmPontos(produto.preco) - carteira.c.saldo} pontos para trocar por ${produto.nome}.`
+    );
+  }
 
   // form: novo lote
   const [novoLote, setNovoLote] = useState({ empresa: "", tipo: TIPOS_RESIDUO[0], kg: "" });
@@ -154,12 +179,15 @@ export default function SemsusMVP() {
       <header style={styles.header}>
         <div>
           <div style={styles.brand}>SEMSUS</div>
-          <div style={styles.subtitle}>protótipo de mvp — indústria → lote → artesão → produto → selo</div>
+          <div style={styles.subtitle}>plataforma (protótipo) — indústria → lote → artesão → produto → selo</div>
         </div>
         <div style={styles.statRow}>
           <Stat label="lotes cadastrados" value={lotes.length} />
           <Stat label="artesãos" value={artesaos.length} />
           <Stat label="co₂ evitado (kg)" value={impactoTotal.co2} accent />
+          <button style={styles.walletChip} onClick={() => setTab("carteira")} title="Minha carteira">
+            <b>{carteira.c.saldo}</b> eco-pontos
+          </button>
         </div>
       </header>
 
@@ -167,7 +195,7 @@ export default function SemsusMVP() {
         {tabs.map((t) => (
           <button
             key={t.key}
-            onClick={() => setTab(t.key)}
+            onClick={() => { setTab(t.key); setAviso(""); }}
             style={{ ...styles.tabButton, ...(tab === t.key ? styles.tabButtonActive : {}) }}
           >
             {t.label}
@@ -265,6 +293,11 @@ export default function SemsusMVP() {
         {tab === "marketplace" && (
           <section>
             <h2 style={styles.h2}>Produtos com selo de rastreabilidade</h2>
+            <p style={styles.lead}>
+              Compre ou troque por eco-pontos. Você tem <b>{carteira.c.saldo} pontos</b>.{" "}
+              <button style={styles.linkBtn} onClick={() => setTab("ganhe")}>Ganhar mais pontos</button>
+            </p>
+            {aviso && <div style={styles.aviso}>{aviso}</div>}
             <div style={styles.grid}>
               {produtos.map((p) => {
                 const lote = lotes.find((l) => l.id === p.loteId);
@@ -284,6 +317,17 @@ export default function SemsusMVP() {
                       <span style={styles.price}>R$ {p.preco.toFixed(2)}</span>
                       <span style={styles.cardImpact}>{imp.co2} kg CO₂ · {imp.agua} L água</span>
                     </div>
+                    <button
+                      style={{
+                        ...styles.buttonSecondary,
+                        width: "100%",
+                        marginTop: 12,
+                        ...(carteira.c.saldo < precoEmPontos(p.preco) ? styles.buttonMuted : {}),
+                      }}
+                      onClick={() => trocar(p)}
+                    >
+                      Trocar por {precoEmPontos(p.preco)} eco-pontos
+                    </button>
                   </div>
                 );
               })}
@@ -334,6 +378,10 @@ export default function SemsusMVP() {
           </section>
         )}
 
+        {tab === "ganhe" && <GanhePontos carteira={carteira} s={styles} />}
+
+        {tab === "carteira" && <MinhaCarteira carteira={carteira} s={styles} irPara={setTab} />}
+
         {tab === "impacto" && (
           <section>
             <h2 style={styles.h2}>Painel de impacto da comunidade</h2>
@@ -361,7 +409,7 @@ export default function SemsusMVP() {
       </main>
 
       <footer style={styles.footer}>
-        protótipo em memória — dados não persistem ao recarregar. próximo passo: conectar a um banco real (ex. Supabase).
+        protótipo — lotes, artesãos e produtos não persistem ao recarregar; sua carteira de eco-pontos fica salva neste navegador.
       </footer>
     </div>
   );
@@ -379,7 +427,27 @@ function Stat({ label, value, accent, big }) {
 }
 
 const styles = {
-  page: { fontFamily: "Arial, sans-serif", color: "#1F1B16", background: "#F6F2E9", minHeight: "100vh", padding: "0 0 40px" },
+  page: { fontFamily: "Inter, Arial, sans-serif", color: "#1F1B16", background: "#F6F2E9", padding: "0 0 32px", textAlign: "left" },
+  walletChip: { background: "#0F3D2E", color: "#fff", border: "none", borderRadius: 10, padding: "10px 16px", fontSize: 12, cursor: "pointer", minWidth: 110, textAlign: "left", lineHeight: 1.3 },
+  lead: { fontSize: 14, color: "#5A5346", margin: "0 0 16px", lineHeight: 1.5 },
+  aviso: { background: "#E5F2E5", border: "1px solid #B9DBBA", color: "#1B5E20", borderRadius: 10, padding: "10px 14px", fontSize: 13, marginBottom: 14 },
+  linkBtn: { background: "none", border: "none", color: "#2E7D32", fontWeight: 700, cursor: "pointer", padding: 0, fontSize: 13, textDecoration: "underline" },
+  buttonSecondary: { background: "#fff", color: "#2E7D32", border: "1.5px solid #2E7D32", borderRadius: 8, padding: "8px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer" },
+  buttonMuted: { color: "#9C9587", borderColor: "#DCD5C2" },
+  subTabs: { display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 16 },
+  subTab: { background: "#fff", border: "1px solid #E2DCC8", borderRadius: 8, padding: "7px 14px", fontSize: 13, cursor: "pointer", color: "#1F1B16", fontWeight: 600 },
+  subTabActive: { background: "#0F3D2E", borderColor: "#0F3D2E", color: "#fff" },
+  texto: { fontSize: 14, lineHeight: 1.6, color: "#3D372E", margin: "8px 0 12px" },
+  nota: { fontSize: 12, color: "#7A7468", margin: "0 0 12px" },
+  opcoes: { display: "grid", gap: 8, margin: "12px 0" },
+  opcao: { textAlign: "left", background: "#FBF9F4", border: "1px solid #E2DCC8", borderRadius: 8, padding: "10px 14px", fontSize: 14, cursor: "pointer", color: "#1F1B16" },
+  opcaoCerta: { background: "#E5F2E5", borderColor: "#2E7D32", color: "#1B5E20", fontWeight: 700 },
+  opcaoErrada: { background: "#FBE9E7", borderColor: "#B3261E", color: "#B3261E" },
+  itemJogo: { fontSize: 22, fontWeight: 800, textAlign: "center", padding: "18px 12px", background: "#FBF9F4", border: "2px dashed #DCD5C2", borderRadius: 12, margin: "8px 0 14px" },
+  lixeiras: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 8 },
+  lixeira: { background: "#0F3D2E", color: "#fff", border: "none", borderRadius: 10, padding: "12px 8px", fontSize: 13, fontWeight: 700, cursor: "pointer" },
+  barra: { height: 8, background: "#EDE7D8", borderRadius: 999, margin: "8px 0 6px", overflow: "hidden" },
+  barraFill: { height: "100%", background: "#2E7D32", borderRadius: 999 },
   header: { display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 16, padding: "28px 32px 16px", borderBottom: "1px solid #E2DCC8" },
   brand: { fontWeight: 800, fontSize: 26, letterSpacing: 1 },
   subtitle: { fontSize: 13, color: "#7A7468", marginTop: 4 },
