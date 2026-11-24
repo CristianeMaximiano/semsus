@@ -1,0 +1,46 @@
+<!--
+title: Calculadora de impacto · SEMSUS
+description: Estime quanto CO₂ e água são poupados quando resíduos industriais (têxtil, madeira, papel, plástico, metal) são transformados em vez de irem para o aterro.
+script: /js/calculadora.js
+-->
+<section class="hero" style="padding-bottom:40px">
+  <div class="wrap">
+    <p class="eyebrow">Calculadora de impacto</p>
+    <h1>Quanto pesa o que deixa de ir para o aterro?</h1>
+    <p class="lead">Escolha o material e a quantidade. A estimativa mostra o CO₂ evitado e a água poupada quando o resíduo vira produto em vez de lixo.</p>
+  </div>
+</section>
+
+<section class="section section-alt" style="padding-top:48px">
+  <div class="wrap calc">
+    <div class="card">
+      <div class="mode" role="group" aria-label="Período">
+        <button type="button" data-mode="unico" aria-pressed="true">Uma vez</button>
+        <button type="button" data-mode="mensal" aria-pressed="false">Por mês (indústria)</button>
+      </div>
+      <p style="font-weight:600;margin-bottom:10px">1. Tipo de material</p>
+      <div class="materials" id="materials"><div class="state" style="grid-column:1/-1">Carregando materiais…</div></div>
+      <p class="small muted" id="material-hint"></p>
+      <div class="field" style="margin-top:20px">
+        <label for="kg" id="kg-label">2. Quantidade (kg)</label>
+        <input id="kg" type="number" min="0" step="1" value="100" inputmode="decimal">
+      </div>
+    </div>
+    <div class="result" aria-live="polite">
+      <h3 id="result-title">Impacto estimado</h3>
+      <div class="row"><div class="big" id="r-kg">—</div><div class="lbl" id="r-kg-lbl">kg de resíduo desviados do aterro</div></div>
+      <div class="row"><div class="big" id="r-co2">—</div><div class="lbl" id="r-co2-lbl">kg de CO₂ evitados</div></div>
+      <div class="row"><div class="big" id="r-agua">—</div><div class="lbl" id="r-agua-lbl">litros de água poupados</div></div>
+      <p class="note">Estimativa com fatores simplificados por tipo de material. O relatório ESG da SEMSUS usa os dados reais de cada lote rastreado.</p>
+      <div class="btn-row" style="margin-top:18px"><a class="btn" href="/industrias.html#formulario" style="background:#b9dcb3;color:#1f1b16;border-color:#b9dcb3">Quero esse impacto na minha empresa</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Como a conta é feita</h2>
+    <p class="lead">Cada tipo de material tem um fator de CO₂ evitado e de água poupada por quilo transformado. A calculadora multiplica esses fatores pela quantidade informada.</p>
+    <div id="factors" style="overflow-x:auto;margin-top:20px"></div>
+  </div>
+</section>

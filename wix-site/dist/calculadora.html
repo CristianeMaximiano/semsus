@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de impacto · SEMSUS</title>
+<meta name="description" content="Estime quanto CO₂ e água são poupados quando resíduos industriais (têxtil, madeira, papel, plástico, metal) são transformados em vez de irem para o aterro.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SEMSUS">
+<meta property="og:title" content="Calculadora de impacto · SEMSUS">
+<meta property="og:description" content="Estime quanto CO₂ e água são poupados quando resíduos industriais (têxtil, madeira, papel, plástico, metal) são transformados em vez de irem para o aterro.">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2e6b34">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232e6b34'/%3E%3Cpath d='M20 38c0-12 10-20 24-20-2 14-10 24-22 24' fill='none' stroke='%23f6f2e9' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/index.html">SEM<span>SUS</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="/index.html">Início</a>
+      <a href="/como-funciona.html">Como funciona</a>
+      <a href="/industrias.html">Para indústrias</a>
+      <a href="/artesaos.html">Artesãos</a>
+      <a href="/calculadora.html">Calculadora de impacto</a>
+      <a href="/sobre.html">Sobre</a>
+      <a class="btn" href="/contato.html">Fale conosco</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" style="padding-bottom:40px">
+  <div class="wrap">
+    <p class="eyebrow">Calculadora de impacto</p>
+    <h1>Quanto pesa o que deixa de ir para o aterro?</h1>
+    <p class="lead">Escolha o material e a quantidade. A estimativa mostra o CO₂ evitado e a água poupada quando o resíduo vira produto em vez de lixo.</p>
+  </div>
+</section>
+
+<section class="section section-alt" style="padding-top:48px">
+  <div class="wrap calc">
+    <div class="card">
+      <div class="mode" role="group" aria-label="Período">
+        <button type="button" data-mode="unico" aria-pressed="true">Uma vez</button>
+        <button type="button" data-mode="mensal" aria-pressed="false">Por mês (indústria)</button>
+      </div>
+      <p style="font-weight:600;margin-bottom:10px">1. Tipo de material</p>
+      <div class="materials" id="materials"><div class="state" style="grid-column:1/-1">Carregando materiais…</div></div>
+      <p class="small muted" id="material-hint"></p>
+      <div class="field" style="margin-top:20px">
+        <label for="kg" id="kg-label">2. Quantidade (kg)</label>
+        <input id="kg" type="number" min="0" step="1" value="100" inputmode="decimal">
+      </div>
+    </div>
+    <div class="result" aria-live="polite">
+      <h3 id="result-title">Impacto estimado</h3>
+      <div class="row"><div class="big" id="r-kg">—</div><div class="lbl" id="r-kg-lbl">kg de resíduo desviados do aterro</div></div>
+      <div class="row"><div class="big" id="r-co2">—</div><div class="lbl" id="r-co2-lbl">kg de CO₂ evitados</div></div>
+      <div class="row"><div class="big" id="r-agua">—</div><div class="lbl" id="r-agua-lbl">litros de água poupados</div></div>
+      <p class="note">Estimativa com fatores simplificados por tipo de material. O relatório ESG da SEMSUS usa os dados reais de cada lote rastreado.</p>
+      <div class="btn-row" style="margin-top:18px"><a class="btn" href="/industrias.html#formulario" style="background:#b9dcb3;color:#1f1b16;border-color:#b9dcb3">Quero esse impacto na minha empresa</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Como a conta é feita</h2>
+    <p class="lead">Cada tipo de material tem um fator de CO₂ evitado e de água poupada por quilo transformado. A calculadora multiplica esses fatores pela quantidade informada.</p>
+    <div id="factors" style="overflow-x:auto;margin-top:20px"></div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/index.html">SEMSUS</a>
+        <p style="margin-top:12px">Seja + Sustentável. Economia circular que conecta resíduo industrial, artesãos e consumo consciente, com rastreabilidade do lote ao produto.</p>
+      </div>
+      <div>
+        <strong style="color:#f6f2e9">Para quem</strong>
+        <ul style="margin-top:12px">
+          <li><a href="/industrias.html">Indústrias</a></li>
+          <li><a href="/artesaos.html">Artesãos e cooperativas</a></li>
+          <li><a href="/calculadora.html">Calculadora de impacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong style="color:#f6f2e9">SEMSUS</strong>
+        <ul style="margin-top:12px">
+          <li><a href="/como-funciona.html">Como funciona</a></li>
+          <li><a href="/sobre.html">Sobre e equipe</a></li>
+          <li><a href="/contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong style="color:#f6f2e9">Onde estamos</strong>
+        <p style="margin-top:12px">Grande ABC Paulista, SP</p>
+      </div>
+    </div>
+    <p class="legal">© SEMSUS. Economia circular com rastreabilidade de ponta a ponta.</p>
+  </div>
+</footer>
+<script type="module" src="/js/site.js"></script>
+<script type="module" src="/js/calculadora.js"></script>
+</body>
+</html>
