@@ -12,3 +12,7 @@ Decisões: site novo separado; loja única SEMSUS; Fase 1 primeiro; domínio dep
 - Form Indústria parceira: e3adf79b-87c2-49d6-b5da-85622f37c37e
 - Form Quero ser artesão SEMSUS: c61d1aa9-0302-45de-a851-34f70b639bf5
 - Form Contato SEMSUS: 637b7c27-f82d-49e2-b153-4b49b8a94567
+
+## Publicação (andamento)
+- Live (provisório): https://headless-rtuqstkqvzi-transportesckc-140e.wix-site-host.com
+- Publicado: todas as 8 páginas, scripts e módulos cms+forms. Verificação de visitante OK.
