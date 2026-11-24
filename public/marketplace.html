@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace circular | Semsus</title>
+    <meta name="description" content="Produtos feitos por artesãos com resíduo industrial, com selo de origem e impacto. Compre ou troque por eco-pontos." />
+    <meta property="og:title" content="Marketplace circular | Semsus" />
+    <meta property="og:description" content="Produtos feitos por artesãos com resíduo industrial, com selo de origem e impacto. Compre ou troque por eco-pontos." />
+    <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/d7dcb2_d3448ea3744544cd97d8905dfbe01c9d~mv2.png/v1/fit/w_64,h_64/semsus.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/paginas.css" />
+  </head>
+  <body>
+    <div id="topo"></div>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow light">Marketplace</span>
+        <h1>Produtos com selo de origem</h1>
+        <p>Peças criadas por artesãos da rede com material que iria para o aterro. Compre ou troque pelos seus eco-pontos (R$ 1,00 = 10 pontos).</p>
+      </div>
+    </section>
+    <main class="section compacta">
+      <div class="container">
+        <div class="market-topo">
+          <div class="filtros" id="filtros"></div>
+          <div class="saldo-box">Seu saldo: <b id="saldo-market">0</b> eco-pontos</div>
+        </div>
+        <p class="aviso" id="aviso" hidden></p>
+        <div class="grade-produtos" id="produtos"></div>
+        <p class="nota">Produtos de demonstração. É artesão e quer vender aqui? <a href="/cadastro-artesao.html"><b>Faça seu cadastro</b></a>.</p>
+      </div>
+    </main>
+    <div id="rodape"></div>
+    <script type="module" src="/js/semsus/layout.js"></script>
+    <script type="module" src="/js/semsus/marketplace.js"></script>
+  </body>
+</html>

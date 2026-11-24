@@ -13,35 +13,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/paginas.css" />
   </head>
   <body>
-    <div class="topbar">
-      <div class="container topbar-in">
-        <span>Projeto Semsus · Semear Sustentabilidade</span>
-        <a href="mailto:semsus.semearsutentabilidade@gmail.com">semsus.semearsutentabilidade@gmail.com</a>
-      </div>
-    </div>
-
-    <header class="header" id="topo">
-      <div class="container header-in">
-        <a href="#topo" class="logo">
-          <img src="https://static.wixstatic.com/media/d7dcb2_d3448ea3744544cd97d8905dfbe01c9d~mv2.png/v1/fit/w_120,h_124/logo-semsus.png" alt="Logo Semsus" width="48" height="50" />
-          <span><b>SEMSUS</b><small>Semeando Sustentabilidade</small></span>
-        </a>
-        <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-        <nav class="nav">
-          <a href="#sobre">Sobre</a>
-          <a href="#solucoes">Soluções</a>
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#eco-pontos">Eco-pontos</a>
-          <a href="#plataforma">Plataforma</a>
-          <a href="#ods">ODS</a>
-          <a href="#contato" class="btn btn-sm">Faça parte</a>
-        </nav>
-      </div>
-    </header>
+    <div id="topo"></div>
 
     <section class="hero">
       <div class="container hero-in">
@@ -49,8 +25,8 @@
         <h1>Transformamos resíduo industrial em renda, produto e impacto positivo</h1>
         <p>A Semsus conecta indústrias que geram sobras de material a artesãos que as transformam em produtos com selo de rastreabilidade e impacto ambiental medido.</p>
         <div class="hero-actions">
-          <a href="#plataforma" class="btn">Conheça a plataforma</a>
-          <a href="#contato" class="btn btn-ghost">Seja parceiro</a>
+          <a href="/cadastro.html" class="btn">Faça parte</a>
+          <a href="/plataforma.html" class="btn btn-ghost">Conheça a plataforma</a>
         </div>
       </div>
     </section>
@@ -187,32 +163,40 @@
           <p>Cada atitude sustentável vale eco-pontos. Junte pontos, suba de nível e troque por peças do marketplace circular.</p>
         </div>
         <div class="eco-grid">
-          <article class="eco-card"><b>+20</b><h3>Blog</h3><p>Leia artigos sobre economia circular e reaproveitamento.</p></article>
-          <article class="eco-card"><b>+10</b><h3>Quizzes</h3><p>Teste o que aprendeu. Cada acerto vale pontos.</p></article>
-          <article class="eco-card"><b>+5</b><h3>Jogo Separa Aí!</h3><p>Coloque cada resíduo na lixeira certa, todo dia.</p></article>
-          <article class="eco-card"><b>+50</b><h3>Desafios</h3><p>Hábitos sustentáveis no dia a dia, como a semana da ecobag.</p></article>
-          <article class="eco-card"><b>+150</b><h3>Voluntariado</h3><p>Mutirões, oficinas e coletas com presença confirmada.</p></article>
+          <a class="eco-card" href="/blog.html"><b>+20</b><h3>Blog</h3><p>Leia artigos sobre economia circular e reaproveitamento.</p></a>
+          <a class="eco-card" href="/jogos.html"><b>+10</b><h3>Quizzes</h3><p>Teste o que aprendeu. Cada acerto vale pontos.</p></a>
+          <a class="eco-card" href="/jogos.html"><b>+5</b><h3>Jogo Separa Aí!</h3><p>Coloque cada resíduo na lixeira certa, todo dia.</p></a>
+          <a class="eco-card" href="/desafios.html"><b>+50</b><h3>Desafios</h3><p>Hábitos sustentáveis no dia a dia, como a semana da ecobag.</p></a>
+          <a class="eco-card" href="/desafios.html"><b>+150</b><h3>Voluntariado</h3><p>Mutirões, oficinas e coletas com presença confirmada.</p></a>
         </div>
         <div class="eco-levels">
           <span>Níveis:</span>
           <em>Semente</em><i>→</i><em>Broto · 200</em><i>→</i><em>Árvore · 600</em><i>→</i><em>Floresta · 1500</em>
         </div>
         <div class="eco-cta">
-          <a href="#plataforma" class="btn btn-light" data-tab="ganhe">Começar a ganhar pontos</a>
+          <a href="/jogos.html" class="btn btn-light">Começar a ganhar pontos</a> <a href="/marketplace.html" class="btn btn-ghost">Ver o marketplace</a>
           <span>R$ 1,00 em produto = 10 eco-pontos</span>
         </div>
       </div>
     </section>
 
-    <section class="section platform" id="plataforma">
+    <section class="section alt">
+      <div class="container">
+        <div class="titulo-secao"><div><span class="eyebrow">Blog</span><h2>Últimos artigos</h2></div><a class="btn btn-contorno" href="/blog.html">Ver todos</a></div>
+        <div class="posts-grade" id="ultimos-posts"><p class="carregando">Carregando artigos…</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="participe">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Plataforma Semsus</span>
-          <h2>Experimente o protótipo</h2>
-          <p>Cadastre um lote, publique um produto, ganhe eco-pontos e troque por peças do marketplace.</p>
+          <span class="eyebrow">Faça parte</span>
+          <h2>Escolha como participar</h2>
         </div>
-        <div class="app-frame">
-          <div id="root"></div>
+        <div class="participe">
+          <article class="participe-card"><h3>Sou artesão</h3><p>Receba lotes de material de indústrias parceiras e venda suas peças com o selo Semsus.</p><a class="btn" href="/cadastro-artesao.html">Cadastro de artesão</a></article>
+          <article class="participe-card"><h3>Quero participar</h3><p>Entre nos desafios, no voluntariado e troque eco-pontos por produtos sustentáveis.</p><a class="btn" href="/cadastro.html">Cadastro de participante</a></article>
+          <article class="participe-card"><h3>Sou uma empresa</h3><p>Sua indústria gera resíduos? Cadastre lotes no banco de materiais e meça o impacto.</p><a class="btn" href="/plataforma.html">Abrir a plataforma</a></article>
         </div>
       </div>
     </section>
@@ -245,64 +229,8 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="container footer-in">
-        <div>
-          <div class="logo logo-light">
-            <img src="https://static.wixstatic.com/media/d7dcb2_d3448ea3744544cd97d8905dfbe01c9d~mv2.png/v1/fit/w_120,h_124/logo-semsus.png" alt="" width="40" height="42" />
-            <span><b>SEMSUS</b><small>Semeando Sustentabilidade</small></span>
-          </div>
-          <p>Economia circular que conecta indústria, artesanato e consumo consciente.</p>
-        </div>
-        <div>
-          <h4>Navegação</h4>
-          <a href="#sobre">Sobre</a>
-          <a href="#solucoes">Soluções</a>
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#plataforma">Plataforma</a>
-        </div>
-        <div>
-          <h4>Contato</h4>
-          <a href="mailto:semsus.semearsutentabilidade@gmail.com">semsus.semearsutentabilidade@gmail.com</a>
-          <a href="https://semsus.net">semsus.net</a>
-        </div>
-      </div>
-      <div class="container copy">© <span id="ano">2026</span> Semsus · Semeando Sustentabilidade</div>
-    </footer>
-
-    <script>
-      (function () {
-        var btn = document.querySelector('.menu-btn');
-        var nav = document.querySelector('.nav');
-        btn.addEventListener('click', function () {
-          var open = nav.classList.toggle('open');
-          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-        nav.addEventListener('click', function (e) {
-          if (e.target.tagName === 'A') { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
-        });
-        var header = document.querySelector('.header');
-        window.addEventListener('scroll', function () { header.classList.toggle('scrolled', window.scrollY > 40); });
-        document.getElementById('ano').textContent = new Date().getFullYear();
-        document.querySelectorAll('[data-tab]').forEach(function (a) {
-          a.addEventListener('click', function () {
-            window.dispatchEvent(new CustomEvent('semsus:tab', { detail: a.getAttribute('data-tab') }));
-          });
-        });
-        var nums = document.querySelectorAll('[data-count]');
-        function run(el) {
-          var end = +el.getAttribute('data-count'), t0 = null;
-          function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1200, 1); el.textContent = Math.round(end * p); if (p < 1) requestAnimationFrame(step); }
-          requestAnimationFrame(step);
-        }
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (en) { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
-          }, { threshold: 0.5 });
-          nums.forEach(function (n) { io.observe(n); });
-        } else { nums.forEach(function (n) { n.textContent = n.getAttribute('data-count'); }); }
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="rodape"></div>
+    <script type="module" src="/js/semsus/layout.js"></script>
+    <script type="module" src="/js/semsus/ultimos.js"></script>
   </body>
 </html>

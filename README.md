@@ -1,16 +1,39 @@
-# React + Vite
+# Semsus — Semeando Sustentabilidade
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Site da Semsus: economia circular que conecta indústrias que geram resíduos a artesãos
+que os transformam em produtos com selo de origem. Publicado no Wix (site headless
+"Semsus - Semeando Sustentabilidade").
 
-Currently, two official plugins are available:
+## Páginas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Página | Arquivo | Dados |
+|---|---|---|
+| Início | `index.html` | últimos artigos lidos do **Wix Blog** |
+| Blog / artigo | `public/blog.html`, `public/artigo.html` | **Wix Blog** (artigos editáveis no painel) |
+| Jogos (quizzes + Separa Aí!) | `public/jogos.html` | conteúdo no código |
+| Desafios e voluntariado | `public/desafios.html` | conteúdo no código |
+| Marketplace | `public/marketplace.html` | produtos de demonstração |
+| Minha carteira | `public/carteira.html` | eco-pontos no navegador |
+| Cadastro de participante | `public/cadastro.html` | **Wix Forms** |
+| Cadastro de artesão | `public/cadastro-artesao.html` | **Wix Forms** |
+| Plataforma (painel React) | `plataforma.html` + `src/` | protótipo em memória |
 
-## React Compiler
+Os scripts das páginas ficam em `public/js/semsus/`, os estilos em `public/css/`.
+Os módulos do Wix (`/js/wix/`) são instalados no site pelo Wix e não fazem parte do repositório.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Eco-pontos
 
-## Expanding the Oxlint configuration
+Blog +20 por artigo · quiz +10 por acerto (1ª tentativa) · jogo +5 por acerto (1x/dia) ·
+desafio +50 · voluntariado +150 (após confirmação). Troca no marketplace: R$ 1,00 = 10 pontos.
+No protótipo a carteira fica no `localStorage` (chave `semsus-carteira-v1`), compartilhada
+entre as páginas e o painel.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Desenvolvimento
+
+```bash
+npm install
+npm run dev     # servidor local
+npm run build   # gera dist/ (index, plataforma e as páginas de public/)
+```
+
+No Wix, o painel é publicado com Preact no lugar do React (mesma API, pacote ~5x menor).
