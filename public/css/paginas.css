@@ -223,6 +223,10 @@ a.eco-card:hover { background: rgba(255,255,255,.14); }
   .relacionados { grid-template-columns: 1fr; }
 }
 
+.footer .logo-rodape { display: inline-block; background: #fff; border-radius: 16px; padding: 10px; margin-bottom: 16px; }
+.logo-rodape img { width: 150px; height: auto; }
+.logo img { border-radius: 50%; background: #fff; }
+
 /* Painel: blog, jogos e carteira agora têm páginas próprias */
 .plataforma-app #root nav > button:nth-child(4),
 .plataforma-app #root nav > button:nth-child(5) { display: none; }

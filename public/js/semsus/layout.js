@@ -1,7 +1,8 @@
 // Cabeçalho, rodapé e menu compartilhados por todas as páginas.
 import { ler, aoMudar } from "/js/semsus/carteira.js";
 
-var LOGO = "https://static.wixstatic.com/media/d7dcb2_d3448ea3744544cd97d8905dfbe01c9d~mv2.png/v1/fit/w_120,h_124/logo-semsus.png";
+var LOGO = "https://static.wixstatic.com/media/d7dcb2_6f6be8f20c634c449abfc6a28a8c6af8~mv2.png/v1/fit/w_120,h_120/semsus-simbolo.png";
+var LOGO_COMPLETO = "https://static.wixstatic.com/media/d7dcb2_278ee65c6bb448b7b3e90d07ab05043e~mv2.png/v1/fit/w_320,h_330/semsus-logo.png";
 var EMAIL = "semsus.semearsutentabilidade@gmail.com";
 var LINKS = [
   ["/", "Início"],
@@ -17,13 +18,13 @@ if (pagina === "/artigo.html") pagina = "/blog.html";
 
 function logo(classe) {
   return '<a href="/" class="logo ' + classe + '"><img src="' + LOGO + '" alt="Logo Semsus" width="48" height="50" />' +
-    "<span><b>SEMSUS</b><small>Semeando Sustentabilidade</small></span></a>";
+    "<span><b>SEMSUS</b><small>Seja + Sustentável</small></span></a>";
 }
 
 var topo = document.getElementById("topo");
 if (topo) {
   topo.innerHTML =
-    '<div class="topbar"><div class="container topbar-in"><span>Projeto Semsus · Semear Sustentabilidade</span>' +
+    '<div class="topbar"><div class="container topbar-in"><span>Semsus · Seja + Sustentável</span>' +
     '<a href="mailto:' + EMAIL + '">' + EMAIL + "</a></div></div>" +
     '<header class="header"><div class="container header-in">' + logo("") +
     '<button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>' +
@@ -50,12 +51,12 @@ if (topo) {
 var rodape = document.getElementById("rodape");
 if (rodape) {
   rodape.innerHTML =
-    '<footer class="footer"><div class="container footer-in"><div>' + logo("logo-light") +
-    "<p>Economia circular que conecta indústria, artesanato e consumo consciente.</p></div>" +
+    '<footer class="footer"><div class="container footer-in"><div><a href="/" class="logo-rodape"><img src="' + LOGO_COMPLETO + '" alt="Semsus — Seja + Sustentável" width="150" height="155" /></a>' +
+    "<p>Semeando sustentabilidade: economia circular que conecta indústria, artesanato e consumo consciente.</p></div>" +
     "<div><h4>Navegação</h4>" + LINKS.slice(1).map(function (l) { return '<a href="' + l[0] + '">' + l[1] + "</a>"; }).join("") +
     '</div><div><h4>Participe</h4><a href="/cadastro-artesao.html">Sou artesão</a><a href="/cadastro.html">Quero participar</a>' +
     '<a href="/carteira.html">Minha carteira</a><a href="mailto:' + EMAIL + '">' + EMAIL + "</a></div></div>" +
-    '<div class="container copy">© ' + new Date().getFullYear() + " Semsus · Semeando Sustentabilidade</div></footer>";
+    '<div class="container copy">© ' + new Date().getFullYear() + " Semsus · Seja + Sustentável</div></footer>";
 }
 
 // números animados (página inicial)
